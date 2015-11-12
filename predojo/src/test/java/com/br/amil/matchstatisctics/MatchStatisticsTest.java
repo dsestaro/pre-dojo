@@ -1,11 +1,6 @@
-package com.br.amil.controller;
+package com.br.amil.matchstatisctics;
 
-import static com.jayway.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +18,7 @@ import com.jayway.restassured.RestAssured;
 @SpringApplicationConfiguration(classes = PredojoApplication.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
-public class FileUploadControllerTest {
+public class MatchStatisticsTest {
 
 	@Value("${local.server.port}")
 	private int port;
@@ -34,23 +29,9 @@ public class FileUploadControllerTest {
 	}
 	
 	@Test
-	public void uploadFileTest() throws IOException {
-		File testFile = File.createTempFile("game", ".txt");
-
-		given().
-		        param("file", Files.readAllBytes(testFile.toPath()).toString()).
-		expect().
-		        body(is("OK")).
-		when().
-		        post("/upload");
-	}
-	
-	@Test
-	public void isAliveTest() {
-		given().
-		expect().
-		         body(is("OK")).
-		when().
-		         get("/isAlive");
+	public void parseLine() {
+		String line = "23/04/2013 15:34:22 - New match 11348965 has started";
+		
+		FileInterpreter.parseLine(line);
 	}
 }
