@@ -1,4 +1,4 @@
-package com.br.amil;
+package com.br.amil.predojo.start;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
