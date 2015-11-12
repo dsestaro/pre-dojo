@@ -17,7 +17,7 @@ public class FileInterpreter {
 			try {
 				line = splitTime(line, lineInformation);
 				
-				line = splitStatus(line, lineInformation);
+				splitStatus(line, lineInformation);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -26,35 +26,45 @@ public class FileInterpreter {
 		return lineInformation;
 	}
 
-	private static String splitStatus(String line, LineInformation lineInformation) {
+	private static void splitStatus(String line, LineInformation lineInformation) {
 		String[] splitedLine;
 		
 		if(line.contains(FileConstants.NEW_MATCH)) {
-			splitStatus(line, lineInformation, FileConstants.NEW_MATCH, MatchStatusEnum.STARTED);
+			lineInformation.setStatus(MatchStatusEnum.STARTED);
+			
+			splitedLine = line.split(FileConstants.NEW_MATCH);
+			
+			if(FileUtils.validateSplit(splitedLine)) {
+				lineInformation.setMatch(splitedLine[1].split(FileConstants.SPACE)[0]);
+			}
 		} else if(line.contains(FileConstants.MATCH_ENDED)) {
-			splitStatus(line, lineInformation, FileConstants.MATCH_ENDED, MatchStatusEnum.ENDED);
+			lineInformation.setStatus(MatchStatusEnum.ENDED);
+
+			splitedLine = line.split(FileConstants.MATCH_ENDED);
+			
+			lineInformation.setMatch(splitedLine[0].split(FileConstants.SPACE)[1]);
 		} else if(line.contains(FileConstants.KILLED)) {
-			splitStatus(line, lineInformation, FileConstants.KILLED, MatchStatusEnum.KILLED);
+			lineInformation.setStatus(MatchStatusEnum.KILLED);
 			
 			splitPlayers(line, lineInformation);
 		}
-		
-		return null;
 	}
 
 	private static void splitPlayers(String line, LineInformation lineInformation) {
 		String[] splitedLine = line.split(FileConstants.KILLED);
 		
 		if(FileUtils.validateSplit(splitedLine)) {
-
-		}
-	}
-
-	private static void splitStatus(String line, LineInformation lineInformation, String constant, MatchStatusEnum type) {
-		String[] splitedLine = line.split(constant);
-		
-		if(FileUtils.validateSplit(splitedLine)) {
-			lineInformation.setStatus(type);
+			if(!splitedLine[0].equals(FileConstants.WORLD)) {
+				lineInformation.setPlayerOne(splitedLine[0]);
+			}
+			
+			splitedLine = splitedLine[1].split(FileConstants.SPACE);
+			
+			if(FileUtils.validateSplit(splitedLine)) {
+				lineInformation.setPlayerTwo(splitedLine[0]);
+				
+				lineInformation.setWeapon(splitedLine[splitedLine.length - 1]);
+			}
 		}
 	}
 
