@@ -31,7 +31,8 @@ public class MatchStatisticsTest {
 	@Test
 	public void parseLine() {
 		String line = "23/04/2013 15:34:22 - New match 11348965 has started";
-		String[] answer = {"23/04/2013 15:34:22", "New match", "11348965", "started"}; 
+		
+		LineInformation answer = new LineInformation();
 		
 		Assert.assertArrayEquals(answer, FileInterpreter.parseLine(line));
 	}
