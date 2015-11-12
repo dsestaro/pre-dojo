@@ -42,7 +42,7 @@ public class FileUploadControllerTest {
 		expect().
 		        body(is("OK")).
 		when().
-		        post("/fileUpload");
+		        post("/upload");
 	}
 	
 	@Test
