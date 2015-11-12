@@ -12,10 +12,9 @@ app
 							$scope.uploadPic = function(file) {
 								file.upload = Upload
 										.upload({
-											url : 'https://angular-file-upload-cors-srv.appspot.com/upload',
+											url : 'http://localhost:8080/fileUpload',
 											data : {
 												file : file,
-												username : $scope.username
 											},
 										});
 
