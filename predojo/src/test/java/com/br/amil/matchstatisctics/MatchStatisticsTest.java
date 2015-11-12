@@ -1,7 +1,6 @@
 package com.br.amil.matchstatisctics;
 
-import static org.junit.Assert.*;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +10,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.br.amil.predojo.matchstatistics.FileInterpreter;
 import com.br.amil.predojo.start.PredojoApplication;
 import com.jayway.restassured.RestAssured;
 
@@ -31,7 +31,8 @@ public class MatchStatisticsTest {
 	@Test
 	public void parseLine() {
 		String line = "23/04/2013 15:34:22 - New match 11348965 has started";
+		String[] answer = {"23/04/2013 15:34:22", "New match", "11348965", "started"}; 
 		
-		FileInterpreter.parseLine(line);
+		Assert.assertArrayEquals(answer, FileInterpreter.parseLine(line));
 	}
 }
