@@ -23,7 +23,7 @@ import com.jayway.restassured.RestAssured;
 @SpringApplicationConfiguration(classes = PredojoApplication.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
-public class MatchStatisticsTest {
+public class FileInterpreterTest {
 
 	@Value("${local.server.port}")
 	private int port;
