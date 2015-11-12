@@ -1,6 +1,5 @@
 package com.br.amil.utils;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +12,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.br.amil.predojo.configs.FileConstants;
 import com.br.amil.predojo.start.PredojoApplication;
+import com.br.amil.predojo.utils.FileUtils;
 import com.jayway.restassured.RestAssured;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,11 +30,11 @@ public class FileUtilsTest {
 	}
 	
 	@Test
-	public void parseValidatorTest() {
+	public void spliValidatorTest() {
 		String line = "23/04/2013 15:34:22 - New match 11348965 has started";
 		
 		String[] parsedLine = line.split(FileConstants.TIME_SEPARATOR);
 		
-		Assert.assertTrue(FileUtils.validateParse(parsedLine));
+		Assert.assertTrue(FileUtils.validateSplit(parsedLine));
 	}
 }
