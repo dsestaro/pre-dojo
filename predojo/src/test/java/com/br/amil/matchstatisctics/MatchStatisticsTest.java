@@ -1,7 +1,6 @@
 package com.br.amil.matchstatisctics;
 
 import java.text.ParseException;
-import java.util.Date;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,6 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.br.amil.predojo.configs.FileConfig;
 import com.br.amil.predojo.matchstatistics.FileInterpreter;
 import com.br.amil.predojo.matchstatistics.dto.LineInformation;
+import com.br.amil.predojo.matchstatistics.enums.MatchStatusEnum;
 import com.br.amil.predojo.start.PredojoApplication;
 import com.jayway.restassured.RestAssured;
 
@@ -39,6 +39,8 @@ public class MatchStatisticsTest {
 		
 		LineInformation answer = new LineInformation();
 		answer.setTime(FileConfig.FORMATTER.parse("23/04/2013 15:34:22"));
+		answer.setMatch("11348965");
+		answer.setStatus(MatchStatusEnum.STARTED);
 		
 		LineInformation response = FileInterpreter.parseLine(line);		
 		
