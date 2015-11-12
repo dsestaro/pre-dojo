@@ -1,6 +1,6 @@
 package com.br.amil.predojo.matchstatistics.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.br.amil.predojo.matchstatistics.enums.MatchStatusEnum;
 
