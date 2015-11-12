@@ -3,10 +3,16 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Pre-Pojo</title>
+<link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+
 <script src="/js/angular/angular.min.js"></script>
 <script src="/js/fileupload/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
 <script src="/js/fileupload/ng-file-upload.min.js"></script>
 <script src="/js/controller/index-controller.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/js/bootstrap/js/bootstrap.min.js"></script>
+
 </head>
 <body ng-app="fileUpload" ng-controller="IndexController">
   <form name="myForm">
@@ -16,14 +22,19 @@
       <input type="file" ngf-select ng-model="picFile" name="file" ngf-max-size="2MB" required>
       <i ng-show="myForm.file.$error.maxSize">File too large 
           {{picFile.size / 1000000|number:1}}MB: max 2M</i>
-      <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Remove</button>
+      <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb">
       <br>
-      <button ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)">
-      	Submit
+      <button ng-disabled="!myForm.$valid" ng-click="upload(picFile)">
+      	Enviar
       </button>
+      <button ng-click="picFile = null" ng-show="picFile">
+      	Remover
+      </button>
+      <br>
       <span class="progress" ng-show="picFile.progress >= 0">
-        <div style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'"></div>
+        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'"></div>
       </span>
+      <br>
       <span ng-show="picFile.result">Arquivo adicionado com sucesso!</span>
       <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
     </fieldset>

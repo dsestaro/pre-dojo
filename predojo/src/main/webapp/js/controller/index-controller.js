@@ -9,7 +9,7 @@ app
 						'Upload',
 						'$timeout',
 						function($scope, Upload, $timeout) {
-							$scope.uploadPic = function(file) {
+							$scope.upload = function(file) {
 								file.upload = Upload
 										.upload({
 											url : 'http://localhost:8080/fileUpload',
