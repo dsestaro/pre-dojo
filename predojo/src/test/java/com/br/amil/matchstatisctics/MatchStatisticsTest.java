@@ -34,13 +34,73 @@ public class MatchStatisticsTest {
 	}
 	
 	@Test
-	public void parseLine() throws ParseException {
+	public void parseLineNewMatch() throws ParseException {
 		String line = "23/04/2013 15:34:22 - New match 11348965 has started";
 		
 		LineInformation answer = new LineInformation();
 		answer.setTime(FileConfig.FORMATTER.parse("23/04/2013 15:34:22"));
 		answer.setMatch("11348965");
 		answer.setStatus(MatchStatusEnum.STARTED);
+		
+		LineInformation response = FileInterpreter.parseLine(line);		
+		
+		Assert.assertEquals(answer.getMatch(), response.getMatch());
+		Assert.assertEquals(answer.getPlayerOne(), response.getPlayerOne());
+		Assert.assertEquals(answer.getPlayerTwo(), response.getPlayerTwo());
+		Assert.assertEquals(answer.getWeapon(), response.getWeapon());
+		Assert.assertEquals(answer.getStatus(), response.getStatus());
+		Assert.assertEquals(answer.getTime(), response.getTime());
+	}
+	
+	@Test
+	public void parseLineMatchEnded() throws ParseException {
+		String line = "23/04/2013 15:39:22 - Match 11348965 has ended";
+		
+		LineInformation answer = new LineInformation();
+		answer.setTime(FileConfig.FORMATTER.parse("23/04/2013 15:39:22"));
+		answer.setMatch("11348965");
+		answer.setStatus(MatchStatusEnum.ENDED);
+		
+		LineInformation response = FileInterpreter.parseLine(line);		
+		
+		Assert.assertEquals(answer.getMatch(), response.getMatch());
+		Assert.assertEquals(answer.getPlayerOne(), response.getPlayerOne());
+		Assert.assertEquals(answer.getPlayerTwo(), response.getPlayerTwo());
+		Assert.assertEquals(answer.getWeapon(), response.getWeapon());
+		Assert.assertEquals(answer.getStatus(), response.getStatus());
+		Assert.assertEquals(answer.getTime(), response.getTime());
+	}
+	
+	@Test
+	public void parseLinePlayerKillingPlayer() throws ParseException {
+		String line = "23/04/2013 15:36:04 - Roman killed Nick using M16";
+		
+		LineInformation answer = new LineInformation();
+		answer.setTime(FileConfig.FORMATTER.parse("23/04/2013 15:36:04"));
+		answer.setStatus(MatchStatusEnum.KILLED);
+		answer.setPlayerOne("Roman");
+		answer.setPlayerTwo("Nick");
+		answer.setWeapon("M16");
+		
+		LineInformation response = FileInterpreter.parseLine(line);		
+		
+		Assert.assertEquals(answer.getMatch(), response.getMatch());
+		Assert.assertEquals(answer.getPlayerOne(), response.getPlayerOne());
+		Assert.assertEquals(answer.getPlayerTwo(), response.getPlayerTwo());
+		Assert.assertEquals(answer.getWeapon(), response.getWeapon());
+		Assert.assertEquals(answer.getStatus(), response.getStatus());
+		Assert.assertEquals(answer.getTime(), response.getTime());
+	}
+	
+	@Test
+	public void parseLineWorldKillingPlayer() throws ParseException {
+		String line = "23/04/2013 15:36:33 - <WORLD> killed Nick by DROWN";
+		
+		LineInformation answer = new LineInformation();
+		answer.setTime(FileConfig.FORMATTER.parse("23/04/2013 15:36:33"));
+		answer.setStatus(MatchStatusEnum.KILLED);
+		answer.setPlayerTwo("Nick");
+		answer.setWeapon("DROWN");
 		
 		LineInformation response = FileInterpreter.parseLine(line);		
 		
