@@ -23,15 +23,7 @@ public class FileUploadController {
 	@RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
 	public @ResponseBody String handleFileUpload(@RequestParam("file") String file) {
 		if (!file.isEmpty()) {
-			try {
-				byte[] bytes = file.getBytes();
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("teste")));
-				stream.write(bytes);
-				stream.close();
-				return "OK";
-			} catch (Exception e) {
-				return "Fail";
-			}
+			return "OK";
 		} else {
 			return "Empty File!";
 		}
