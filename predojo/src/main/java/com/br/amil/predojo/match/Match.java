@@ -20,7 +20,7 @@ public class Match {
 
 	public void addPlayerDeath(String name) {
 		if(!this.data.getPlayersInfo().containsKey(name)) {
-			this.data.getPlayersInfo().put(name, new PlayerInfoDTO());
+			this.data.getPlayersInfo().put(name, new PlayerInfoDTO(name));
 		}
 		
 		Integer nbrDeaths = this.data.getPlayersInfo().get(name).getPlayersDeath();
@@ -30,7 +30,7 @@ public class Match {
 	
 	public void addPlayerKill(String name) {
 		if(!this.data.getPlayersInfo().containsKey(name)) {
-			this.data.getPlayersInfo().put(name, new PlayerInfoDTO());
+			this.data.getPlayersInfo().put(name, new PlayerInfoDTO(name));
 		}
 		
 		Integer nbrKills = this.data.getPlayersInfo().get(name).getPlayersKills();
@@ -40,7 +40,7 @@ public class Match {
 	
 	public void addWeaponKill(String name, String player) {
 		if(!this.data.getPlayersInfo().containsKey(player)) {
-			this.data.getPlayersInfo().put(player, new PlayerInfoDTO());
+			this.data.getPlayersInfo().put(player, new PlayerInfoDTO(player));
 		}
 		
 		this.data.getPlayersInfo().get(player).addWeaponsKills(name);

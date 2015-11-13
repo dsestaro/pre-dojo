@@ -7,8 +7,10 @@ public class PlayerInfoDTO {
 	private int playersDeath;
 	private int playersKills;
 	private Map<String, WeaponInfoDTO> weaponsKills;
+	private String playerName;
 	
-	public PlayerInfoDTO() {
+	public PlayerInfoDTO(String name) {
+		this.playerName = name;
 		this.playersDeath = 0;
 		this.playersKills = 0;
 		this.weaponsKills = new HashMap<String, WeaponInfoDTO>();
@@ -36,5 +38,11 @@ public class PlayerInfoDTO {
 	}
 	public Map<String, WeaponInfoDTO> getWeaponsKills() {
 		return weaponsKills;
+	}
+	public String getPlayerName() {
+		return playerName;
+	}
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
 	}
 }

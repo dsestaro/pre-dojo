@@ -38,7 +38,7 @@ public class MatchTest {
 	public void addPlayerDeathTest() {
 		String name = "Nick";
 		
-		PlayerInfoDTO expectedPlayerDeaths = new PlayerInfoDTO();
+		PlayerInfoDTO expectedPlayerDeaths = new PlayerInfoDTO(name);
 		
 		expectedPlayerDeaths.setPlayersDeath(1);
 		
@@ -53,7 +53,7 @@ public class MatchTest {
 	public void addPlayerDeathToAAlreadyKilledPlayerTest() {
 		String name = "Nick";
 		
-		PlayerInfoDTO expectedPlayerDeaths = new PlayerInfoDTO();
+		PlayerInfoDTO expectedPlayerDeaths = new PlayerInfoDTO(name);
 		
 		expectedPlayerDeaths.setPlayersDeath(2);
 		
@@ -69,7 +69,7 @@ public class MatchTest {
 	public void addPlayerKillTest() {
 		String name = "Nick";
 		
-		PlayerInfoDTO expectedPlayerKills = new PlayerInfoDTO();
+		PlayerInfoDTO expectedPlayerKills = new PlayerInfoDTO(name);
 		
 		expectedPlayerKills.setPlayersKills(1);
 		
@@ -84,7 +84,7 @@ public class MatchTest {
 	public void addPlayerKillToAAlreadyScoringPlayerTest() {
 		String name = "Nick";
 		
-		PlayerInfoDTO expectedPlayerKills = new PlayerInfoDTO();
+		PlayerInfoDTO expectedPlayerKills = new PlayerInfoDTO(name);
 		
 		expectedPlayerKills.setPlayersKills(2);
 		
@@ -101,7 +101,7 @@ public class MatchTest {
 		String name = "AK-47";
 		String player = "Adam";
 		
-		PlayerInfoDTO expectedWeaponKills = new PlayerInfoDTO();
+		PlayerInfoDTO expectedWeaponKills = new PlayerInfoDTO(player);
 		
 		expectedWeaponKills.addWeaponsKills(name);
 		
@@ -117,7 +117,7 @@ public class MatchTest {
 		String name = "AK-47";
 		String player = "Adam";
 		
-		PlayerInfoDTO expectedWeaponKills = new PlayerInfoDTO();
+		PlayerInfoDTO expectedWeaponKills = new PlayerInfoDTO(player);
 		
 		expectedWeaponKills.addWeaponsKills(name);
 		expectedWeaponKills.addWeaponsKills(name);
