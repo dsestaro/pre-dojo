@@ -1,9 +1,5 @@
 package com.br.amil.predojo.match;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.br.amil.predojo.match.dto.MatchDTO;
 
 public class Match {
@@ -35,14 +31,24 @@ public class Match {
 	
 	public void addPlayerKill(String name) {
 		if(this.data.getPlayersKills().containsKey(name)) {
-			Integer nbrDeaths = this.data.getPlayersKills().get(name);
+			Integer nbrKills = this.data.getPlayersKills().get(name);
 			
-			this.data.getPlayersKills().put(name, nbrDeaths + 1);
+			this.data.getPlayersKills().put(name, nbrKills + 1);
 		} else {
 			this.data.getPlayersKills().put(name, 1);
 		}
 		
 		addPlayerToMath(name);
+	}
+	
+	public void addWeaponKill(String name) {
+		if(this.data.getWeaponsKills().containsKey(name)) {
+			Integer nbrKills = this.data.getWeaponsKills().get(name);
+			
+			this.data.getWeaponsKills().put(name, nbrKills + 1);
+		} else {
+			this.data.getWeaponsKills().put(name, 1);
+		}
 	}
 
 	private void addPlayerToMath(String name) {
