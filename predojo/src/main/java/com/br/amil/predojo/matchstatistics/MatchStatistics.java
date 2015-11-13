@@ -3,17 +3,17 @@ package com.br.amil.predojo.matchstatistics;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.List;
 
 import com.br.amil.predojo.match.Match;
 import com.br.amil.predojo.matchstatistics.dto.LineInformation;
+import com.br.amil.predojo.matchstatistics.dto.MatchStatisticsDTO;
 
 public class MatchStatistics {
 	
-	public List<Match> matches;
-	
+	public MatchStatisticsDTO data = new MatchStatisticsDTO();
+
 	public MatchStatistics() {
-		this.matches = new ArrayList<Match>();
+		this.data.setMatches(new ArrayList<Match>());
 	}
 
 	public Match createMatch(String id, Date dateStart) {
@@ -36,7 +36,7 @@ public class MatchStatistics {
 				break;
 			case ENDED:
 				match.getData().setEndTime(lineInformation.getTime());
-				this.matches.add(match);
+				this.data.getMatches().add(match);
 
 				break;
 			case KILLED:
