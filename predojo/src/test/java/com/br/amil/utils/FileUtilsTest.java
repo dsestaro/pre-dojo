@@ -1,5 +1,11 @@
 package com.br.amil.utils;
 
+import static org.hamcrest.CoreMatchers.is;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +19,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.br.amil.predojo.configs.FileConstants;
 import com.br.amil.predojo.start.PredojoApplication;
 import com.br.amil.predojo.utils.FileUtils;
+import com.google.common.io.CharStreams;
 import com.jayway.restassured.RestAssured;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -36,5 +43,18 @@ public class FileUtilsTest {
 		String[] parsedLine = line.split(FileConstants.TIME_SEPARATOR);
 		
 		Assert.assertTrue(FileUtils.validateSplit(parsedLine));
+	}
+	
+	@Test
+	public void splitLines() throws IOException {
+		InputStream inputStream = this.getClass().getResourceAsStream("game.txt");
+		
+		String file = CharStreams.toString(new InputStreamReader(inputStream));
+		
+		String[] linesExpected = file.split("\n\r"); 
+		
+		String[] acutalLines = FileUtils.splitLines(file);
+		
+		Assert.assertThat(acutalLines, is(linesExpected));
 	}
 }
