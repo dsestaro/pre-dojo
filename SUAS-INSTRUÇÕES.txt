@@ -1,2 +1,47 @@
-Coloque aqui suas instruções ou comentários que ache útil/relevantes para possamos ler 
-quando estivermos avaliando a sua solução
+##### Resolução: #####
+Para resolver o problema preferi utilizar uma abordagem web, pois dessa forma conseguiria utilizar uma gama maior de conhecimentos, para o controle da aplicação server-side utilizei o framework Spring-Boot por disponibilizar um metodologia de desenvolvimento ágil e a criação do projeto foi realizada utilizando o framework Spring Initializr com o Maven, para diminuir ainda mais o tempo gasto com configuração. O web conteiner utilizado foi um TomCat embarcado na aplicação, dessa forma falicitando o teste e o deploy da aplicação. Por ser processamento de arquivos não vi a necessidade de gravação em banco de dados portanto os dados são perdidos com o fim da execução, outro motivo que me fez utilizar uma solução web, pois os dados ficarão na tela do usuário até o refresh.
+
+Devido ao curto tempo, o desenvolvimento e o planejamento foi feito da seguinte forma, implementei as funcionalidades básicas pedidas e com o tempo restante foi adicionando algumas novas funcionalidades. Esse planejamento foi feito para que não fosse entregue códigos feitos pela metade.	
+
+##### Observações: #####
+As classes estão sem javadoc pois devido ao curto prazo tive que optar por um desenvolvimento com comentários ou o TDD, como os próprios testes e nomes sujestivos são uma forma de documentação aceitável, preferi ir por esse caminho.
+
+Sobre o repositório, preferi explicitar todos os meus commits e não usar nenhuma técnica de agrupamento de commit no momento do push, pois assim fica claro a linha de pensamento que usei durante o desenvolvimento.
+
+##### Restrições: #####
+- O arquivo deve ter um tamanho máximo de 2MB.
+- A solução processa um arquivo por vez para cada usuário.
+
+#### Tecnologias Utilizadas e Motivações ####
+- [Spring]		- Framework MVC mais conhecido no mercado.
+- [Spring Boot]	- Framework para desenvolvimento ágil de projetos, foi escolhido por configurar automaticamente o Spring, além de conseguir rodar uma versão standalone da aplicação gerada.
+- [Spring IO]	- Utilizado para criar o projeto inicial, adicionando ao pom.xml as principais dependências selecionadas por mim, assim como criando toda a estrutura do projeto.
+- [JUnit]		- Ferramenta de testes amplamente utilizada.
+- [Log4J]		- Ferramenta de log utilizada por todos os frameworks
+- [REST Assured]- Framework para realização de testes utilizando chamadas REST
+- [Gson]		- Framework para a serialização de dados.
+- [AngularJS]	- Framework para tratar a camada js no clint-side, facilita o desenvolvimento.
+- [Ng File Upload]- Conjunto de diretivas do angular e classes para upload de arquivo na forma de multipart.
+- [Guava]		- Framework utilizado apenas para parsear inputstream em string.
+- [Spring Initializr]
+				- Framework utilizado na criação do projeto.
+
+ 
+#### Algoritmo de Menor Caminho ####
+#### Como executar o projeto ####
+
+##### Para a execução e compilação do projeto é necessário o framework [Maven] instalado. #####
+
+para realizar a execução do projeto deve-se executar os seguintes comandos na ordem aprensetada:
+
+Para compilar o projeto e rodar os testes
+```sh
+mvn clean install
+```
+
+Start da aplicação
+```sh
+mvn spring-boot:run
+```
+
+Após rodar o comando apresentado acima o basta acessar o endereço http://localhost:8080/ e a página estará disponível para processamento dos arquivos.
