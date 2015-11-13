@@ -61,7 +61,7 @@ public class Match {
 			
 			this.playersDeath.put(name, nbrDeaths + 1);
 		} else {
-			this.playersDeath.put(name, 0);
+			this.playersDeath.put(name, 1);
 		}
 	}
 }
