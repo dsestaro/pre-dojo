@@ -38,13 +38,36 @@
 				com sucesso!</span> <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
 		</fieldset>
 		<br>
-		<div ng-repeat="match in matches"> 
-			{{match.data.id}}
-			<div ng-repeat="playerInfo in match.data.playersInfo | orderBy:'-playersKills'">
-				{{playerInfo.playerName}}
-				{{playerInfo.playersDeath}}
-				{{playerInfo.playersKills}}
-			<div>
-		</div>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Partida</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="match in matches">
+					<td>
+						{{match.data.id}}
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Player</th>
+									<th>Kills</th>
+									<th>Death</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="playerInfo in match.data.playersInfo | orderObjectBy:'playersKills':true">
+									<td>{{playerInfo.playerName}}</td>
+									<td>{{playerInfo.playersKills}}</td>
+									<td>{{playerInfo.playersDeath}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 </body>
 </html>
