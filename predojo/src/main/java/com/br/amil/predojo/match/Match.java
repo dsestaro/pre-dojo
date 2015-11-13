@@ -39,9 +39,18 @@ public class Match {
 		
 		this.data.getPlayersInfo().get(name).setLongestStreak(this.data.getPlayersInfo().get(name).getLongestStreak() + 1);
 		
+		validateLongestStreak(this.data.getPlayersInfo().get(name).getLongestStreak(), name);
+		
 		this.data.getPlayersInfo().get(name).setPlayersKills(nbrKills + 1);
 	}
 	
+	private void validateLongestStreak(int longestStreak, String name) {
+		if(data.getLongestStreak() < longestStreak) {
+			data.setLongestStreak(longestStreak);
+			data.setLongestStreakPlayer(name);
+		}
+	}
+
 	public void addWeaponKill(String name, String player) {
 		if(!this.data.getPlayersInfo().containsKey(player)) {
 			this.data.getPlayersInfo().put(player, new PlayerInfoDTO(player));
