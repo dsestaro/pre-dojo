@@ -54,6 +54,13 @@ public class FileInterpreterTest {
 		
 		LinkedList<LineInformation> processedLines = FileInterpreter.parseLines(lines);
 		
-		Assert.assertThat(processedLines, is(expectedProcessedLines));
+		for(int i = 0; i < processedLines.size(); i++) {
+			Assert.assertEquals(expectedProcessedLines.get(i).getMatch(), processedLines.get(i).getMatch());
+			Assert.assertEquals(expectedProcessedLines.get(i).getPlayerOne(), processedLines.get(i).getPlayerOne());
+			Assert.assertEquals(expectedProcessedLines.get(i).getPlayerTwo(), processedLines.get(i).getPlayerTwo());
+			Assert.assertEquals(expectedProcessedLines.get(i).getWeapon(), processedLines.get(i).getWeapon());
+			Assert.assertEquals(expectedProcessedLines.get(i).getStatus(), processedLines.get(i).getStatus());
+			Assert.assertEquals(expectedProcessedLines.get(i).getTime(), processedLines.get(i).getTime());
+		}
 	}
 }
