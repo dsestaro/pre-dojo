@@ -63,4 +63,35 @@ public class MatchTest {
 		
 		Assert.assertThat(match.getPlayersDeath(), is(expectedPlayerDeaths));
 	}
+	
+	@Test
+	public void addPlayerKillTest() {
+		String name = "Nick";
+		
+		Map<String, Integer> expectedPlayerKills = new HashMap<String, Integer>();
+		
+		expectedPlayerKills.put(name, 1);
+		
+		Match match = new Match();
+		
+		match.addPlayerKill(name);
+		
+		Assert.assertThat(match.getPlayersKills(), is(expectedPlayerKills));
+	}
+	
+	@Test
+	public void addPlayerKillToAAlreadyScoringPlayerTest() {
+		String name = "Nick";
+		
+		Map<String, Integer> expectedPlayerKills = new HashMap<String, Integer>();
+		
+		expectedPlayerKills.put(name, 2);
+		
+		Match match = new Match();
+		
+		match.addPlayerKill(name);
+		match.addPlayerKill(name);
+
+		Assert.assertThat(match.getPlayersKills(), is(expectedPlayerKills));
+	}
 }
