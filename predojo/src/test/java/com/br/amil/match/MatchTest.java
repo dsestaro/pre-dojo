@@ -45,7 +45,7 @@ public class MatchTest {
 		
 		match.addPlayerDeath(name);
 		
-		Assert.assertThat(match.getPlayersDeath(), is(expectedPlayerDeaths));
+		Assert.assertThat(match.getData().getPlayersDeath(), is(expectedPlayerDeaths));
 	}
 	
 	@Test
@@ -61,7 +61,7 @@ public class MatchTest {
 		match.addPlayerDeath(name);
 		match.addPlayerDeath(name);
 		
-		Assert.assertThat(match.getPlayersDeath(), is(expectedPlayerDeaths));
+		Assert.assertThat(match.getData().getPlayersDeath(), is(expectedPlayerDeaths));
 	}
 	
 	@Test
@@ -76,7 +76,7 @@ public class MatchTest {
 		
 		match.addPlayerKill(name);
 		
-		Assert.assertThat(match.getPlayersKills(), is(expectedPlayerKills));
+		Assert.assertThat(match.getData().getPlayersKills(), is(expectedPlayerKills));
 	}
 	
 	@Test
@@ -92,6 +92,6 @@ public class MatchTest {
 		match.addPlayerKill(name);
 		match.addPlayerKill(name);
 
-		Assert.assertThat(match.getPlayersKills(), is(expectedPlayerKills));
+		Assert.assertThat(match.getData().getPlayersKills(), is(expectedPlayerKills));
 	}
 }
