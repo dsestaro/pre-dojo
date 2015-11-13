@@ -1,5 +1,7 @@
 package com.br.amil.matchstatisctics;
 
+import static org.hamcrest.CoreMatchers.is;
+
 import java.text.ParseException;
 import java.util.Date;
 
@@ -45,6 +47,9 @@ public class MatchStatisticsTest {
 		answer.getData().setId(id);
 		answer.getData().setStartTime(dateStart);
 		
-		Assert.assertEquals(answer, matchstatistics.createMatch(id, dateStart));
+		Match actual = matchstatistics.createMatch(id, dateStart);
+		
+		Assert.assertThat(answer.getData().getId(), is(actual.getData().getId()));
+		Assert.assertThat(answer.getData().getStartTime(), is(actual.getData().getStartTime()));
 	}
 }
