@@ -75,4 +75,15 @@ public class MatchStatisticsTest {
 		
 		matchStatistics.processMatchs(processedLines);
 	}
+	
+	@Test
+	public void processDeath() {
+		String line = "23/04/2013 15:36:04 - Roman killed Nick using M16";
+		
+		LineInformation lineInformation = LineInterpreter.parseLine(line);
+		
+		MatchStatistics matchStatistics = new MatchStatistics();
+		
+		matchStatistics.processDeath(lineInformation);
+	}
 }
