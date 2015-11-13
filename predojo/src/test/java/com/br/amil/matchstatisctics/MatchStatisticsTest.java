@@ -84,6 +84,8 @@ public class MatchStatisticsTest {
 		
 		MatchStatistics matchStatistics = new MatchStatistics();
 		
-		matchStatistics.processDeath(lineInformation);
+		Match match = new Match();
+		
+		matchStatistics.processDeath(lineInformation, match);
 	}
 }
