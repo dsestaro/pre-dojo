@@ -63,5 +63,29 @@ public class Match {
 		} else {
 			this.playersDeath.put(name, 1);
 		}
+		
+		addPlayerToMath(name);
+	}
+	
+	public void addPlayerKill(String name) {
+		if(this.playersKills.containsKey(name)) {
+			Integer nbrDeaths = this.playersKills.get(name);
+			
+			this.playersKills.put(name, nbrDeaths + 1);
+		} else {
+			this.playersKills.put(name, 1);
+		}
+		
+		addPlayerToMath(name);
+	}
+
+	private void addPlayerToMath(String name) {
+		if(!this.playersDeath.containsKey(name)) {
+			this.playersDeath.put(name, 0);
+		}
+		
+		if(!this.playersKills.containsKey(name)) {
+			this.playersKills.put(name, 0);
+		}
 	}
 }
