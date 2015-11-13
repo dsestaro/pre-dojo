@@ -10,8 +10,10 @@ public class PlayerInfoDTO {
 	private String playerName;
 	private int prefWeaponKills;
 	private String prefWeapon;
+	private int longestStreak;
 	
 	public PlayerInfoDTO(String name) {
+		this.longestStreak = 0;
 		this.playerName = name;
 		this.playersDeath = 0;
 		this.playersKills = 0;
@@ -68,5 +70,11 @@ public class PlayerInfoDTO {
 	}
 	public void setWeaponsKills(Map<String, WeaponInfoDTO> weaponsKills) {
 		this.weaponsKills = weaponsKills;
+	}
+	public int getLongestStreak() {
+		return longestStreak;
+	}
+	public void setLongestStreak(int longestStreak) {
+		this.longestStreak = longestStreak;
 	}
 }

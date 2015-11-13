@@ -9,8 +9,11 @@ public class MatchDTO {
 	private Date startTime;
 	private Date endTime;
 	private Map<String, PlayerInfoDTO> playersInfo;
+	private String longestStreakPlayer;
+	private int longestStreak;
 
 	public MatchDTO() {
+		this.longestStreak = 0;
 		this.playersInfo = new HashMap<String, PlayerInfoDTO>();
 	}
 
@@ -44,5 +47,21 @@ public class MatchDTO {
 
 	public void setPlayersInfo(Map<String, PlayerInfoDTO> playersInfo) {
 		this.playersInfo = playersInfo;
+	}
+
+	public String getLongestStreakPlayer() {
+		return longestStreakPlayer;
+	}
+
+	public void setLongestStreakPlayer(String longestStreakPlayer) {
+		this.longestStreakPlayer = longestStreakPlayer;
+	}
+
+	public int getLongestStreak() {
+		return longestStreak;
+	}
+
+	public void setLongestStreak(int longestStreak) {
+		this.longestStreak = longestStreak;
 	}
 }

@@ -25,6 +25,8 @@ public class Match {
 		
 		Integer nbrDeaths = this.data.getPlayersInfo().get(name).getPlayersDeath();
 		
+		this.data.getPlayersInfo().get(name).setLongestStreak(0);
+		
 		this.data.getPlayersInfo().get(name).setPlayersDeath(nbrDeaths + 1);
 	}
 	
@@ -34,6 +36,8 @@ public class Match {
 		}
 		
 		Integer nbrKills = this.data.getPlayersInfo().get(name).getPlayersKills();
+		
+		this.data.getPlayersInfo().get(name).setLongestStreak(this.data.getPlayersInfo().get(name).getLongestStreak() + 1);
 		
 		this.data.getPlayersInfo().get(name).setPlayersKills(nbrKills + 1);
 	}
