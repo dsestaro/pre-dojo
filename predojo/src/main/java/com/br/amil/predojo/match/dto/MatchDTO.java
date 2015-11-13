@@ -8,14 +8,10 @@ public class MatchDTO {
 	private String id;
 	private Date startTime;
 	private Date endTime;
-	private Map<String, Integer> playersDeath;
-	private Map<String, Integer> playersKills;
-	private Map<String, Integer> weaponsKills;
+	private Map<String, PlayerInfoDTO> playersInfo;
 
 	public MatchDTO() {
-		this.playersDeath = new HashMap<String, Integer>();
-		this.playersKills = new HashMap<String, Integer>();
-		this.weaponsKills = new HashMap<String, Integer>();
+		this.playersInfo = new HashMap<String, PlayerInfoDTO>();
 	}
 
 	public String getId() {
@@ -42,27 +38,11 @@ public class MatchDTO {
 		this.endTime = endTime;
 	}
 
-	public Map<String, Integer> getPlayersDeath() {
-		return playersDeath;
+	public Map<String, PlayerInfoDTO> getPlayersInfo() {
+		return playersInfo;
 	}
 
-	public void setPlayersDeath(Map<String, Integer> playersDeath) {
-		this.playersDeath = playersDeath;
-	}
-
-	public Map<String, Integer> getPlayersKills() {
-		return playersKills;
-	}
-
-	public void setPlayersKills(Map<String, Integer> playersKills) {
-		this.playersKills = playersKills;
-	}
-
-	public Map<String, Integer> getWeaponsKills() {
-		return weaponsKills;
-	}
-
-	public void setWeaponsKills(Map<String, Integer> weaponsKills) {
-		this.weaponsKills = weaponsKills;
+	public void setPlayersInfo(Map<String, PlayerInfoDTO> playersInfo) {
+		this.playersInfo = playersInfo;
 	}
 }

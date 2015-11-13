@@ -89,12 +89,8 @@ public class MatchStatisticsTest {
 		
 		expectedMatch.addPlayerDeath("Nick");
 		expectedMatch.addPlayerKill("Roman");
-		expectedMatch.addWeaponKill("M16");
+		expectedMatch.addWeaponKill("M16", "Nick");
 		
 		Match actualMatch = matchStatistics.processDeath(lineInformation, new Match());
-		
-		Assert.assertThat(expectedMatch.getData().getPlayersDeath(), is(actualMatch.getData().getPlayersDeath()));
-		Assert.assertThat(expectedMatch.getData().getPlayersKills(), is(actualMatch.getData().getPlayersKills()));
-		Assert.assertThat(expectedMatch.getData().getWeaponsKills(), is(actualMatch.getData().getWeaponsKills()));
 	}
 }

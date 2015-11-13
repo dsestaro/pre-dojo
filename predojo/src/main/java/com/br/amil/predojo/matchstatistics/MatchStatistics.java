@@ -57,9 +57,8 @@ public class MatchStatistics {
 		
 		if(lineInformation.getPlayerOne() != null) {
 			match.addPlayerKill(lineInformation.getPlayerOne());
+			match.addWeaponKill(lineInformation.getWeapon(), lineInformation.getPlayerOne());
 		}
-		
-		match.addWeaponKill(lineInformation.getWeapon());
 		
 		return match;
 	}

@@ -1,6 +1,7 @@
 package com.br.amil.predojo.match;
 
 import com.br.amil.predojo.match.dto.MatchDTO;
+import com.br.amil.predojo.match.dto.PlayerInfoDTO;
 
 public class Match {
 	private MatchDTO data;
@@ -18,46 +19,30 @@ public class Match {
 	}
 
 	public void addPlayerDeath(String name) {
-		if(this.data.getPlayersDeath().containsKey(name)) {
-			Integer nbrDeaths = this.data.getPlayersDeath().get(name);
-			
-			this.data.getPlayersDeath().put(name, nbrDeaths + 1);
-		} else {
-			this.data.getPlayersDeath().put(name, 1);
+		if(!this.data.getPlayersInfo().containsKey(name)) {
+			this.data.getPlayersInfo().put(name, new PlayerInfoDTO());
 		}
 		
-		addPlayerToMath(name);
+		Integer nbrDeaths = this.data.getPlayersInfo().get(name).getPlayersDeath();
+		
+		this.data.getPlayersInfo().get(name).setPlayersDeath(nbrDeaths + 1);
 	}
 	
 	public void addPlayerKill(String name) {
-		if(this.data.getPlayersKills().containsKey(name)) {
-			Integer nbrKills = this.data.getPlayersKills().get(name);
-			
-			this.data.getPlayersKills().put(name, nbrKills + 1);
-		} else {
-			this.data.getPlayersKills().put(name, 1);
+		if(!this.data.getPlayersInfo().containsKey(name)) {
+			this.data.getPlayersInfo().put(name, new PlayerInfoDTO());
 		}
 		
-		addPlayerToMath(name);
+		Integer nbrKills = this.data.getPlayersInfo().get(name).getPlayersKills();
+		
+		this.data.getPlayersInfo().get(name).setPlayersKills(nbrKills + 1);
 	}
 	
-	public void addWeaponKill(String name) {
-		if(this.data.getWeaponsKills().containsKey(name)) {
-			Integer nbrKills = this.data.getWeaponsKills().get(name);
-			
-			this.data.getWeaponsKills().put(name, nbrKills + 1);
-		} else {
-			this.data.getWeaponsKills().put(name, 1);
-		}
-	}
-
-	private void addPlayerToMath(String name) {
-		if(!this.data.getPlayersDeath().containsKey(name)) {
-			this.data.getPlayersDeath().put(name, 0);
+	public void addWeaponKill(String name, String player) {
+		if(!this.data.getPlayersInfo().containsKey(player)) {
+			this.data.getPlayersInfo().put(player, new PlayerInfoDTO());
 		}
 		
-		if(!this.data.getPlayersKills().containsKey(name)) {
-			this.data.getPlayersKills().put(name, 0);
-		}
+		this.data.getPlayersInfo().get(player).addWeaponsKills(name);
 	}
 }

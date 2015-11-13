@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.br.amil.predojo.match.Match;
+import com.br.amil.predojo.match.dto.PlayerInfoDTO;
 import com.br.amil.predojo.start.PredojoApplication;
 import com.jayway.restassured.RestAssured;
 
@@ -37,92 +38,95 @@ public class MatchTest {
 	public void addPlayerDeathTest() {
 		String name = "Nick";
 		
-		Map<String, Integer> expectedPlayerDeaths = new HashMap<String, Integer>();
+		PlayerInfoDTO expectedPlayerDeaths = new PlayerInfoDTO();
 		
-		expectedPlayerDeaths.put(name, 1);
+		expectedPlayerDeaths.setPlayersDeath(1);
 		
 		Match match = new Match();
 		
 		match.addPlayerDeath(name);
 		
-		Assert.assertThat(match.getData().getPlayersDeath(), is(expectedPlayerDeaths));
+		Assert.assertThat(match.getData().getPlayersInfo().get("Nick").getPlayersDeath(), is(expectedPlayerDeaths.getPlayersDeath()));
 	}
 	
 	@Test
 	public void addPlayerDeathToAAlreadyKilledPlayerTest() {
 		String name = "Nick";
 		
-		Map<String, Integer> expectedPlayerDeaths = new HashMap<String, Integer>();
+		PlayerInfoDTO expectedPlayerDeaths = new PlayerInfoDTO();
 		
-		expectedPlayerDeaths.put(name, 2);
+		expectedPlayerDeaths.setPlayersDeath(2);
 		
 		Match match = new Match();
 		
 		match.addPlayerDeath(name);
 		match.addPlayerDeath(name);
 		
-		Assert.assertThat(match.getData().getPlayersDeath(), is(expectedPlayerDeaths));
+		Assert.assertThat(match.getData().getPlayersInfo().get(name).getPlayersDeath(), is(expectedPlayerDeaths.getPlayersDeath()));
 	}
 	
 	@Test
 	public void addPlayerKillTest() {
 		String name = "Nick";
 		
-		Map<String, Integer> expectedPlayerKills = new HashMap<String, Integer>();
+		PlayerInfoDTO expectedPlayerKills = new PlayerInfoDTO();
 		
-		expectedPlayerKills.put(name, 1);
+		expectedPlayerKills.setPlayersKills(1);
 		
 		Match match = new Match();
 		
 		match.addPlayerKill(name);
 		
-		Assert.assertThat(match.getData().getPlayersKills(), is(expectedPlayerKills));
+		Assert.assertThat(match.getData().getPlayersInfo().get(name).getPlayersKills(), is(expectedPlayerKills.getPlayersKills()));
 	}
 	
 	@Test
 	public void addPlayerKillToAAlreadyScoringPlayerTest() {
 		String name = "Nick";
 		
-		Map<String, Integer> expectedPlayerKills = new HashMap<String, Integer>();
+		PlayerInfoDTO expectedPlayerKills = new PlayerInfoDTO();
 		
-		expectedPlayerKills.put(name, 2);
+		expectedPlayerKills.setPlayersKills(2);
 		
 		Match match = new Match();
 		
 		match.addPlayerKill(name);
 		match.addPlayerKill(name);
 
-		Assert.assertThat(match.getData().getPlayersKills(), is(expectedPlayerKills));
+		Assert.assertThat(match.getData().getPlayersInfo().get(name).getPlayersKills(), is(expectedPlayerKills.getPlayersKills()));
 	}
 	
 	@Test
 	public void addWeaponKillTest() {
 		String name = "AK-47";
+		String player = "Adam";
 		
-		Map<String, Integer> expectedWeaponKills = new HashMap<String, Integer>();
+		PlayerInfoDTO expectedWeaponKills = new PlayerInfoDTO();
 		
-		expectedWeaponKills.put(name, 1);
+		expectedWeaponKills.addWeaponsKills(name);
 		
 		Match match = new Match();
 		
-		match.addWeaponKill(name);
+		match.addWeaponKill(name, player);
 		
-		Assert.assertThat(match.getData().getWeaponsKills(), is(expectedWeaponKills));
+		Assert.assertThat(match.getData().getPlayersInfo().get(player).getWeaponsKills().get(name).getKills(), is(expectedWeaponKills.getWeaponsKills().get(name).getKills()));
 	}
 	
 	@Test
 	public void addWeaponKillToAAlreadyScoringWeaponTest() {
 		String name = "AK-47";
+		String player = "Adam";
 		
-		Map<String, Integer> expectedWeaponKills = new HashMap<String, Integer>();
+		PlayerInfoDTO expectedWeaponKills = new PlayerInfoDTO();
 		
-		expectedWeaponKills.put(name, 2);
+		expectedWeaponKills.addWeaponsKills(name);
+		expectedWeaponKills.addWeaponsKills(name);
 		
 		Match match = new Match();
 		
-		match.addWeaponKill(name);
-		match.addWeaponKill(name);
+		match.addWeaponKill(name, player);
+		match.addWeaponKill(name, player);
 
-		Assert.assertThat(match.getData().getWeaponsKills(), is(expectedWeaponKills));
+		Assert.assertThat(match.getData().getPlayersInfo().get(player).getWeaponsKills().get(name).getKills(), is(expectedWeaponKills.getWeaponsKills().get(name).getKills()));
 	}
 }
