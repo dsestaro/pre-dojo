@@ -1,9 +1,13 @@
 package com.br.amil.matchstatisctics;
 
+import static org.hamcrest.CoreMatchers.is;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +18,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.br.amil.predojo.matchstatistics.FileInterpreter;
+import com.br.amil.predojo.matchstatistics.LineInterpreter;
+import com.br.amil.predojo.matchstatistics.dto.LineInformation;
 import com.br.amil.predojo.start.PredojoApplication;
 import com.google.common.io.CharStreams;
 import com.jayway.restassured.RestAssured;
@@ -40,6 +46,14 @@ public class FileInterpreterTest {
 		
 		String[] lines = file.split("\n\r");
 		
-		FileInterpreter.parseLines(lines);
+		LinkedList<LineInformation> expectedProcessedLines = new LinkedList<LineInformation>();
+		
+		for(String line : lines) {
+			expectedProcessedLines.add(LineInterpreter.parseLine(line));
+		}
+		
+		LinkedList<LineInformation> processedLines = FileInterpreter.parseLines(lines);
+		
+		Assert.assertThat(processedLines, is(expectedProcessedLines));
 	}
 }
