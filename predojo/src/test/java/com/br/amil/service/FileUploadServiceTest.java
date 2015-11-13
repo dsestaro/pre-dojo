@@ -13,6 +13,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.br.amil.predojo.service.FileUploadService;
 import com.br.amil.predojo.start.PredojoApplication;
 import com.google.common.io.CharStreams;
 import com.jayway.restassured.RestAssured;
