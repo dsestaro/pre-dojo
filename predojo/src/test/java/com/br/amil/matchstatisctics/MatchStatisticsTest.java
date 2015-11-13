@@ -6,8 +6,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -63,6 +65,7 @@ public class MatchStatisticsTest {
 	
 	@Test
 	public void processMatchsTest() throws IOException {
+		MatchStatistics matchStatistics = new MatchStatistics();
 		InputStream inputStream = this.getClass().getResourceAsStream("/game.txt");
 		
 		String file = CharStreams.toString(new InputStreamReader(inputStream));
@@ -70,8 +73,6 @@ public class MatchStatisticsTest {
 		String[] lines = file.split("\n\r");
 		
 		LinkedList<LineInformation> processedLines = FileInterpreter.parseLines(lines);
-		
-		MatchStatistics matchStatistics = new MatchStatistics();
 		
 		matchStatistics.processMatchs(processedLines);
 	}

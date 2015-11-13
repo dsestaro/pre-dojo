@@ -1,7 +1,5 @@
 package com.br.amil.matchstatisctics;
 
-import static org.hamcrest.CoreMatchers.is;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
