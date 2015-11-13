@@ -8,4 +8,8 @@ public class FileUtils {
 		
 		return false;
 	}
+
+	public static String[] splitLines(String file) {
+		return file.split("\n\r");
+	}
 }

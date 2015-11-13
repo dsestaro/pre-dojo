@@ -47,7 +47,7 @@ public class FileUtilsTest {
 	
 	@Test
 	public void splitLines() throws IOException {
-		InputStream inputStream = this.getClass().getResourceAsStream("game.txt");
+		InputStream inputStream = this.getClass().getResourceAsStream("/game.txt");
 		
 		String file = CharStreams.toString(new InputStreamReader(inputStream));
 		
