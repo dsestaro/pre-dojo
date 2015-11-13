@@ -1,12 +1,12 @@
 ##### Resolução: #####
-Para resolver o problema preferi utilizar uma abordagem web, pois dessa forma conseguiria utilizar uma gama maior de conhecimentos, para o controle da aplicação server-side utilizei o framework Spring-Boot por disponibilizar um metodologia de desenvolvimento ágil e a criação do projeto foi realizada utilizando o framework Spring Initializr com o Maven, para diminuir ainda mais o tempo gasto com configuração. O web conteiner utilizado foi um TomCat embarcado na aplicação, dessa forma falicitando o teste e o deploy da aplicação. Por ser processamento de arquivos não vi a necessidade de gravação em banco de dados portanto os dados são perdidos com o fim da execução, outro motivo que me fez utilizar uma solução web, pois os dados ficarão na tela do usuário até o refresh.
+Para resolver o problema preferi utilizar uma abordagem web, pois dessa forma conseguiria mostrar uma gama maior de conhecimentos. Para o controle da aplicação, server-side, utilizei o framework Spring-Boot por disponibilizar um metodologia de desenvolvimento ágil. A criação do projeto foi realizada utilizando o framework Spring Initializr junto ao Maven, para dessa forma tentar minimizar o tempo gasto com a configuração do projeto. O web conteiner utilizado foi um TomCat embarcado na aplicação, para falicitar o teste e o deploy da aplicação, visto que o objetivo é apenas uma demo. Por ser processamento de arquivos não relacionados, não vi a necessidade de gravação em banco de dados ou a persistência em memória dos resultados, portanto os dados são perdidos com o fim da execução, outro motivo que me fez utilizar uma solução web, pois os dados ficarão na tela do usuário até o refresh.
 
-Devido ao curto tempo, o desenvolvimento e o planejamento foi feito da seguinte forma, implementei as funcionalidades básicas pedidas e com o tempo restante foi adicionando algumas novas funcionalidades. Esse planejamento foi feito para que não fosse entregue códigos feitos pela metade.	
+Devido ao curto tempo, o desenvolvimento e o planejamento foi feito da seguinte forma: (i)implementei as funcionalidades básicas pedidas; (ii) com o tempo restante foi adicionando algumas novas funcionalidades. Esse planejamento foi feito para que não fosse entregue códigos feitos pela metade.	
 
 ##### Observações: #####
-As classes estão sem javadoc pois devido ao curto prazo tive que optar por um desenvolvimento com comentários ou o TDD, como os próprios testes e nomes sujestivos são uma forma de documentação aceitável, preferi ir por esse caminho.
+As classes estão sem javadoc pois devido ao curto prazo tive que optar por um desenvolvimento com comentários ou o TDD, como os próprios testes e nomes coerentes para métodos e variáveis são uma forma de documentação aceitável, preferi ir por esse caminho.
 
-Sobre o repositório, preferi explicitar todos os meus commits e não usar nenhuma técnica de agrupamento de commit no momento do push, pois assim fica claro a linha de pensamento que usei durante o desenvolvimento.
+Sobre o repositório, preferi explicitar todos os meus commits e não usar nenhuma técnica de agrupamento de commit no momento do push, pois assim ficará claro a linha de pensamento que usei durante o desenvolvimento, além de ser uma boa prática.
 
 ##### Restrições: #####
 - O arquivo deve ter um tamanho máximo de 2MB.
@@ -27,7 +27,6 @@ Sobre o repositório, preferi explicitar todos os meus commits e não usar nenhuma
 				- Framework utilizado na criação do projeto.
 
  
-#### Algoritmo de Menor Caminho ####
 #### Como executar o projeto ####
 
 ##### Para a execução e compilação do projeto é necessário o framework [Maven] instalado. #####
@@ -35,13 +34,13 @@ Sobre o repositório, preferi explicitar todos os meus commits e não usar nenhuma
 para realizar a execução do projeto deve-se executar os seguintes comandos na ordem aprensetada:
 
 Para compilar o projeto e rodar os testes
-```sh
+
 mvn clean install
-```
+
 
 Start da aplicação
-```sh
-mvn spring-boot:run
-```
 
-Após rodar o comando apresentado acima o basta acessar o endereço http://localhost:8080/ e a página estará disponível para processamento dos arquivos.
+mvn spring-boot:run
+
+
+Após rodar o comando apresentado acima o basta acessar o endereço http://localhost:8080/ e a página estará disponível para processamento dos arquivos. A aplicação está configurada para realizar os testes, mesmo os com chamadas REST, via Maven.
