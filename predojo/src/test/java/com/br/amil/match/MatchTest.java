@@ -129,4 +129,16 @@ public class MatchTest {
 
 		Assert.assertThat(match.getData().getPlayersInfo().get(player).getWeaponsKills().get(name).getKills(), is(expectedWeaponKills.getWeaponsKills().get(name).getKills()));
 	}
+	
+	@Test
+	public void validateLongestStreakTest() {
+		String name = "Nick";
+		
+		Match match = new Match();
+		
+		match.addPlayerKill(name);
+		match.addPlayerKill(name);
+		
+		Assert.assertThat(match.getData().getLongestStreakPlayer(), is(name));
+	}
 }
