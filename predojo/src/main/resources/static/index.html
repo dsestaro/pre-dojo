@@ -49,12 +49,30 @@
 				<tr ng-repeat="match in matches">
 					<td>
 						{{match.data.id}}
+						
 						<table class="table">
 							<thead>
 								<tr>
-									<th>Player</th>
+									<th>Jogador Com o Maior Streak</th>
+									<th>Maior Streak</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>{{match.data.longestStreakPlayer}}</td>
+									<td>{{match.data.longestStreak}}</td>
+								</tr>
+							</tbody>
+						</table>
+						
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Jogador</th>
 									<th>Kills</th>
 									<th>Death</th>
+									<th>Arma Preferida</th>
+									<th>Award</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -62,6 +80,10 @@
 									<td>{{playerInfo.playerName}}</td>
 									<td>{{playerInfo.playersKills}}</td>
 									<td>{{playerInfo.playersDeath}}</td>
+									<td>{{playerInfo.prefWeapon}}</td>
+									<td><div ng-if="playerInfo.playersDeath == 0">
+										<span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>
+									</div></td>
 								</tr>
 							</tbody>
 						</table>

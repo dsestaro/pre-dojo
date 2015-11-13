@@ -11,6 +11,7 @@ public class MatchDTO {
 	private Map<String, PlayerInfoDTO> playersInfo;
 	private String longestStreakPlayer;
 	private int longestStreak;
+	private String favoriteWeapon;
 
 	public MatchDTO() {
 		this.longestStreak = 0;
@@ -63,5 +64,13 @@ public class MatchDTO {
 
 	public void setLongestStreak(int longestStreak) {
 		this.longestStreak = longestStreak;
+	}
+	
+	public String getFavoriteWeapon() {
+		return favoriteWeapon;
+	}
+	
+	public void setFavoriteWeapon(String favoriteWeapon) {
+		this.favoriteWeapon = favoriteWeapon;
 	}
 }
