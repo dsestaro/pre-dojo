@@ -1,5 +1,6 @@
 package com.br.amil.matchstatisctics;
 
+import java.text.ParseException;
 import java.util.Date;
 
 import org.junit.Assert;
@@ -33,13 +34,16 @@ public class MatchStatisticsTest {
 	}
 	
 	@Test
-	public void createMatchTest() {
+	public void createMatchTest() throws ParseException {
 		String id = "11348965";
 		Date dateStart = FileConfig.FORMATTER.parse("23/04/2013 15:34:22");
 		
 		MatchStatistics matchstatistics = new MatchStatistics();
 
 		Match answer = new Match();
+		
+		answer.getData().setId(id);
+		answer.getData().setStartTime(dateStart);
 		
 		Assert.assertEquals(answer, matchstatistics.createMatch(id, dateStart));
 	}
