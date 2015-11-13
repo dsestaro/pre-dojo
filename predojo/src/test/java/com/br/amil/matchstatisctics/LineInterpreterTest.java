@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.br.amil.predojo.configs.FileConfig;
-import com.br.amil.predojo.matchstatistics.FileInterpreter;
+import com.br.amil.predojo.matchstatistics.LineInterpreter;
 import com.br.amil.predojo.matchstatistics.dto.LineInformation;
 import com.br.amil.predojo.matchstatistics.enums.MatchStatusEnum;
 import com.br.amil.predojo.start.PredojoApplication;
@@ -23,7 +23,7 @@ import com.jayway.restassured.RestAssured;
 @SpringApplicationConfiguration(classes = PredojoApplication.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
-public class FileInterpreterTest {
+public class LineInterpreterTest {
 
 	@Value("${local.server.port}")
 	private int port;
@@ -42,7 +42,7 @@ public class FileInterpreterTest {
 		answer.setMatch("11348965");
 		answer.setStatus(MatchStatusEnum.STARTED);
 		
-		LineInformation response = FileInterpreter.parseLine(line);		
+		LineInformation response = LineInterpreter.parseLine(line);		
 		
 		Assert.assertEquals(answer.getMatch(), response.getMatch());
 		Assert.assertEquals(answer.getPlayerOne(), response.getPlayerOne());
@@ -61,7 +61,7 @@ public class FileInterpreterTest {
 		answer.setMatch("11348965");
 		answer.setStatus(MatchStatusEnum.ENDED);
 		
-		LineInformation response = FileInterpreter.parseLine(line);		
+		LineInformation response = LineInterpreter.parseLine(line);		
 		
 		Assert.assertEquals(answer.getMatch(), response.getMatch());
 		Assert.assertEquals(answer.getPlayerOne(), response.getPlayerOne());
@@ -82,7 +82,7 @@ public class FileInterpreterTest {
 		answer.setPlayerTwo("Nick");
 		answer.setWeapon("M16");
 		
-		LineInformation response = FileInterpreter.parseLine(line);		
+		LineInformation response = LineInterpreter.parseLine(line);		
 		
 		Assert.assertEquals(answer.getMatch(), response.getMatch());
 		Assert.assertEquals(answer.getPlayerOne(), response.getPlayerOne());
@@ -102,7 +102,7 @@ public class FileInterpreterTest {
 		answer.setPlayerTwo("Nick");
 		answer.setWeapon("DROWN");
 		
-		LineInformation response = FileInterpreter.parseLine(line);		
+		LineInformation response = LineInterpreter.parseLine(line);		
 		
 		Assert.assertEquals(answer.getMatch(), response.getMatch());
 		Assert.assertEquals(answer.getPlayerOne(), response.getPlayerOne());

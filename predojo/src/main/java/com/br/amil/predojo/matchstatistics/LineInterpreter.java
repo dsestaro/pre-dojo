@@ -8,7 +8,7 @@ import com.br.amil.predojo.matchstatistics.dto.LineInformation;
 import com.br.amil.predojo.matchstatistics.enums.MatchStatusEnum;
 import com.br.amil.predojo.utils.FileUtils;
 
-public class FileInterpreter {
+public class LineInterpreter {
 	
 	public static LineInformation parseLine(String line) {
 		LineInformation lineInformation = new LineInformation();
