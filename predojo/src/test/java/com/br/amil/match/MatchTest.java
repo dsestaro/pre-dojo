@@ -94,4 +94,35 @@ public class MatchTest {
 
 		Assert.assertThat(match.getData().getPlayersKills(), is(expectedPlayerKills));
 	}
+	
+	@Test
+	public void addWeaponKillTest() {
+		String name = "AK-47";
+		
+		Map<String, Integer> expectedWeaponKills = new HashMap<String, Integer>();
+		
+		expectedWeaponKills.put(name, 1);
+		
+		Match match = new Match();
+		
+		match.addWeaponKill(name);
+		
+		Assert.assertThat(match.getData().getWeaponsKills(), is(expectedWeaponKills));
+	}
+	
+	@Test
+	public void addWeaponKillToAAlreadyScoringWeaponTest() {
+		String name = "AK-47";
+		
+		Map<String, Integer> expectedWeaponKills = new HashMap<String, Integer>();
+		
+		expectedWeaponKills.put(name, 2);
+		
+		Match match = new Match();
+		
+		match.addWeaponKill(name);
+		match.addWeaponKill(name);
+
+		Assert.assertThat(match.getData().getWeaponsKills(), is(expectedWeaponKills));
+	}
 }
