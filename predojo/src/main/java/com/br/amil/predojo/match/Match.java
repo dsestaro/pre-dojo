@@ -1,6 +1,7 @@
 package com.br.amil.predojo.match;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Match {
@@ -11,8 +12,12 @@ public class Match {
 	private Map<String, Integer> playersKills;
 	private Map<String, Integer> weaponsKills;
 	
-	
-	
+	public Match() {
+		this.playersDeath = new HashMap<String, Integer>();
+		this.playersKills = new HashMap<String, Integer>();
+		this.weaponsKills = new HashMap<String, Integer>();
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -48,5 +53,15 @@ public class Match {
 	}
 	public void setWeaponsKills(Map<String, Integer> weaponsKills) {
 		this.weaponsKills = weaponsKills;
+	}
+	
+	public void addPlayerDeath(String name) {
+		if(this.playersDeath.containsKey(name)) {
+			Integer nbrDeaths = this.playersDeath.get(name);
+			
+			this.playersDeath.put(name, nbrDeaths + 1);
+		} else {
+			this.playersDeath.put(name, 0);
+		}
 	}
 }
