@@ -1,12 +1,15 @@
 package com.br.amil.controller;
 
 import static com.jayway.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 
+import org.apache.http.HttpStatus;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.br.amil.predojo.start.PredojoApplication;
+import com.google.common.io.CharStreams;
 import com.jayway.restassured.RestAssured;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -35,12 +39,14 @@ public class FileUploadControllerTest {
 	
 	@Test
 	public void uploadFileTest() throws IOException {
-		File testFile = File.createTempFile("game", ".txt");
+		InputStream inputStream = this.getClass().getResourceAsStream("/game.txt");
+		
+		String file = CharStreams.toString(new InputStreamReader(inputStream));
 
 		given().
-		        param("file", Files.readAllBytes(testFile.toPath()).toString()).
+		        param("file", file).
 		expect().
-		        body(is("OK")).
+				statusCode(HttpStatus.SC_OK).
 		when().
 		        post("/upload");
 	}

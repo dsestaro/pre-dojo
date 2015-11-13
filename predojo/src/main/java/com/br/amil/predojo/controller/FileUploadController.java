@@ -1,11 +1,10 @@
 package com.br.amil.predojo.controller;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.InputStreamReader;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.br.amil.predojo.configs.FileConfig;
+import com.br.amil.predojo.service.FileUploadService;
+import com.google.common.io.CharStreams;
+import com.google.gson.Gson;
 
 @Controller
 public class FileUploadController {
@@ -32,21 +34,27 @@ public class FileUploadController {
 	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public @ResponseBody String handleUpload(@RequestParam("file") String file) {
+		FileUploadService fileUploadService = new FileUploadService();
+		
 		if (!file.isEmpty()) {
-			return "OK";
+			String matches = new Gson().toJson(fileUploadService.processFile(file));
+			
+			System.out.println(matches);
+			
+			return matches;
 		} else {
 			return "Empty File!";
 		}
 	}
 	
-	@RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
+	@RequestMapping(value = "/fileUpload", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file) {
 		try {
-			File tempFile = File.createTempFile(file.getOriginalFilename(), FileConfig.PREFIX);
+			String fileContent = CharStreams.toString(new InputStreamReader(file.getInputStream())); 
 			
-			file.transferTo(tempFile);
+			System.out.println(fileContent);
 			
-			return handleUpload(Files.readAllBytes(tempFile.toPath()).toString());
+			return handleUpload(fileContent);
 		} catch (IllegalStateException | IOException e) {
 			return "Ocorreu um erro ao processar o arquivo!";
 		}

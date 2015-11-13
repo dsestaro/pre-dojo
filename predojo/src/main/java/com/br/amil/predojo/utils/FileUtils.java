@@ -10,6 +10,6 @@ public class FileUtils {
 	}
 
 	public static String[] splitLines(String file) {
-		return file.split("\n\r");
+		return file.split("\r\n");
 	}
 }

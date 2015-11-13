@@ -42,7 +42,7 @@ public class FileInterpreterTest {
 		
 		String file = CharStreams.toString(new InputStreamReader(inputStream));
 		
-		String[] lines = file.split("\n\r");
+		String[] lines = file.split("\r\n");
 		
 		LinkedList<LineInformation> expectedProcessedLines = new LinkedList<LineInformation>();
 		

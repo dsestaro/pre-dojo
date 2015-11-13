@@ -51,7 +51,7 @@ public class FileUtilsTest {
 		
 		String file = CharStreams.toString(new InputStreamReader(inputStream));
 		
-		String[] linesExpected = file.split("\n\r"); 
+		String[] linesExpected = file.split("\r\n"); 
 		
 		String[] acutalLines = FileUtils.splitLines(file);
 		
