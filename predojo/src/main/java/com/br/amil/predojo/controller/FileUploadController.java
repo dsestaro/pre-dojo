@@ -39,8 +39,6 @@ public class FileUploadController {
 		if (!file.isEmpty()) {
 			String matches = new Gson().toJson(fileUploadService.processFile(file));
 			
-			System.out.println(matches);
-			
 			return matches;
 		} else {
 			return "Empty File!";
@@ -51,8 +49,6 @@ public class FileUploadController {
 	public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file) {
 		try {
 			String fileContent = CharStreams.toString(new InputStreamReader(file.getInputStream())); 
-			
-			System.out.println(fileContent);
 			
 			return handleUpload(fileContent);
 		} catch (IllegalStateException | IOException e) {
