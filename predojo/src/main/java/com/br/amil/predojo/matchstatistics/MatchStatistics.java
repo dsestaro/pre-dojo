@@ -3,6 +3,7 @@ package com.br.amil.predojo.matchstatistics;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 
 import com.br.amil.predojo.match.Match;
 import com.br.amil.predojo.matchstatistics.dto.LineInformation;
@@ -10,7 +11,7 @@ import com.br.amil.predojo.matchstatistics.dto.MatchStatisticsDTO;
 
 public class MatchStatistics {
 	
-	public MatchStatisticsDTO data = new MatchStatisticsDTO();
+	private MatchStatisticsDTO data = new MatchStatisticsDTO();
 
 	public MatchStatistics() {
 		this.data.setMatches(new ArrayList<Match>());
@@ -25,7 +26,7 @@ public class MatchStatistics {
 		return match;
 	}
 
-	public void processMatchs(LinkedList<LineInformation> processedLines) {
+	public List<Match> processMatchs(LinkedList<LineInformation> processedLines) {
 		Match match = new Match();
 		
 		for(LineInformation lineInformation : processedLines) {
@@ -47,6 +48,8 @@ public class MatchStatistics {
 				break;
 			}
 		}
+		
+		return this.data.getMatches();
 	}
 
 	public Match processDeath(LineInformation lineInformation, Match match) {
